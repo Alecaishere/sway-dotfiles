@@ -1,0 +1,159 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": ["sway/workspaces","pulseaudio","disk","disk#disk2","battery#battery2"],
+    "modules-center": ["tray"],
+    "modules-right": ["network", "cpu", "temperature","battery","clock","custom/notifications"],
+    "sway/mode": {
+        "format": " {}"
+    },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "disable-markup": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "0",
+        }
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 8
+    },
+    "sway/window": {
+        "max-length": 60,
+        "tooltip": false
+        // "format": "( {} )"
+    },
+    "clock": {
+	"interval": 60,
+	"tooltip": true,
+	"format": "<span color='#FFFF33'>  </span>{:%H:%M }",
+	"tooltip-format": "{:%d - %m - %Y}",
+	"on-click": "zenity --calendar"
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "<span color='#00EA09'> </span>{usage:3}%",
+        "max-length": 10,
+        "tooltip": false,
+    },
+    "disk": {
+        "interval": 60,
+        "format":" <span color='#FF9933'></span> {free}",
+        "path": "/",
+        "tooltip": true,
+    },
+    "disk#disk2": {
+        "interval": 60,
+        "format":" <span color='#00FF95'></span> {free}",
+        "path": "/home",
+        "tooltip": true,
+    },
+    "custom/powermenu": {
+        "return-type": "json",
+        "format": "<span font='feather 5 Free 12' color='#FF0000'>{icon}</span>",
+        "format-icons": [""],
+        "interval": 1,
+        "escape": true,
+        "on-click": "nwg-bar -x"
+    },
+    "custom/recorder": {
+		"format": "!",
+		"return-type": "json",
+		"interval": 3,
+		"exec": "echo '{\"class\": \"recording\"}'",
+		"exec-if": "pgrep wf-recorder",
+        "tooltip": false,
+        "on-click": "killall -s SIGINT wf-recorder"
+	},
+    "battery": {
+        "format":"<span font='feather 5 Free 11' color='#00D100'>{icon} </span>{capacity}%",
+        "format-icons":["󰁹"],
+        "format-time": " ({H}h{M}m)",
+        "format-charging":"<span font='feather 5 Free' color='#D16900'>󰂄 </span>{capacity}% ",
+        "format-full":"<span font='feather 5 Free' color='#69D100'>  </span>Charged",
+        "interval": 30,
+        "states": {
+            "warning": 25,
+            "critical": 20,
+        },
+	"tooltip": true,
+    },
+    "battery#battery2":{
+	"format":"<span font='feather 5 Free 12' color='#FFFF33'> </span>{power:0.2}W",
+	"interval": 1,
+        "tooltip": false,
+    },
+    "network": {
+        "format": "{icon}",
+        "format-wifi":"<span font='feather 5 Free 11'>󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}</span>",
+        "format-ethernet": "<span font='feather 5 Free 11'>󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}</span>",
+        "format-disconnected": " Disconnected",
+        "interval": 1,
+        "tooltip-format": "Interface {ifname}, {essid} Freq {frequency}, Signal {signaldBm} ",
+        "tooltip": true,
+    },
+
+    "pulseaudio": {
+        "format": "<span font='feather 5 Free 11' color='#40FF00'>{icon:2} </span>{volume}%",
+        "format-alt": "<span font='feather 5 Free 11' color='#40FF00'>{icon:2} </span>{volume}%",
+        "format-alt-click": "click-right",
+        "format-muted": "<span font='feather 5 Free 11' color='#FF0000'>󰖁</span>",
+        "format-icons": {
+            "headphone": ["󰋋"],
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "scroll-step": 5,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right" : "pavucontrol",
+        "tooltip": true,
+        "max-volume": 100,
+    },
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-alt": "{icon}",
+        "format-alt-click": "click-left",
+        "format-icons": ["", ""],
+        "on-scroll-up": "light -A 1",
+        "on-scroll-down": "light -U 1"
+    },
+    "custom/gpu-usage": {
+	"exec": "cat /sys/class/drm/card0/device/hwmon/hwmon1/device/gpu_busy_percent",
+        "format": "<span color='#FF0000'> 󰻑 </span>{}%",
+        "interval": 1,
+        "max-length": 10,
+        "format-tooltip": "GPU",
+        "tooltip": false,
+    },
+    "custom/notifications": {
+        "format": "<span font='feather 5 Free 12' color='#00F9A8'>󰂚 </span>",
+        "format-icons": [" "],
+        "on-click": "swaync-client -t",
+        "tooltip": false,
+    },
+    "temperature": {
+        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp2_input",
+        "critical-threshold": 75,
+        "interval": 1,
+        "format": "<span color='#FF0000'>{icon}</span> {temperatureC}°",
+        "tooltip": false,
+        "format-icons": [
+            "", // Icon: temperature-empty
+            "", // Icon: temperature-quarter
+            "", // Icon: temperature-half
+            "", // Icon: temperature-three-quarters
+            ""  // Icon: temperature-full
+        ]
+    }
+}

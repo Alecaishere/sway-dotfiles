@@ -1,0 +1,58 @@
+@import url('file:///home/ale/.cache/wal/colors-waybar.css');
+
+*{
+    font-family: Iosevka Nerd Font;
+}
+
+window {
+    margin: 5px;
+    border: 1px solid @color6;
+    background-color: @color0;
+}
+
+#input {
+    margin: 5px;
+    border-radius: 0px;
+    border: none;
+    border-bottom: 0px solid black;
+    background-color: @color0;
+    color: white;
+}
+
+#inner-box {
+    margin: 5px;
+    background-color: @color0;
+}
+
+#outer-box {
+    margin: 5px;
+    padding: 5px;
+    background-color: @color0;
+}
+
+#scroll {
+    
+}
+
+#text {
+    margin: 5px;
+    color: white;
+    /* border: 2px solid cyan; */
+    /* background-color: cyan; */
+}
+
+/* #entry:nth-child(even){
+    background-color: #404552;
+} */
+
+#entry:selected {
+    background-color: @color1;
+}
+
+#text:selected {
+    color: black;
+}
+
+
+
+

@@ -1,0 +1,21 @@
+set $wallpaper $HOME/Pictures/firewatch.png
+
+set $background #07141A
+set $foreground #c1c4c5
+
+set $color0 #07141A
+set $color1 #379B60
+set $color2 #479E62
+set $color3 #48AB6B
+set $color4 #78C276
+set $color5 #6BBE8B
+set $color6 #A7D38B
+set $color7 #c1c4c5
+set $color8 #59676d
+set $color9 #379B60
+set $color10 #479E62
+set $color11 #48AB6B
+set $color12 #78C276
+set $color13 #6BBE8B
+set $color14 #A7D38B
+set $color15 #c1c4c5
